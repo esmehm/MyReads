@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prettier": "^2.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -12,7 +13,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier-check": "./node_modules/.bin/prettier --check \"src/**/*.{js,css}\" ",
+    "prettier-fix": "./node_modules/.bin/prettier --write \"src/**/*.{js,css}\" "
   },
   "eslintConfig": {
     "extends": "react-app"
