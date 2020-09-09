@@ -1,7 +1,7 @@
 import React from "react";
 import Book from "./Book";
 
-const Bookshelf = ({ shelf, books = [], getData }) => {
+const Bookshelf = ({ shelf, books = [], handleChange }) => {
   const booksOnShelf = books.filter((book) => book.shelf === shelf.key);
 
   //TODO: add comment about empty shelf
@@ -14,7 +14,7 @@ const Bookshelf = ({ shelf, books = [], getData }) => {
           {booksOnShelf.map((book) => {
             return (
               <li key={book.id}>
-                <Book book={book} getData={getData} />
+                <Book book={book} handleChange={handleChange} />
               </li>
             );
           })}

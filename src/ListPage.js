@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AppTitle from "./AppTitle";
 import Bookshelf from "./Bookshelf";
-import { getAll } from "./BooksAPI";
+import { getAll, update } from "./BooksAPI";
 
 const ListPage = () => {
   const shelves = [
@@ -18,6 +18,10 @@ const ListPage = () => {
       key: "read",
     },
   ];
+
+  const handleChange = (event, book) => {
+    update(book, event.target.value).then(getData);
+  };
 
   const [books, setBooks] = useState();
 
@@ -42,7 +46,7 @@ const ListPage = () => {
               shelf={shelf}
               books={books}
               key={shelf.key}
-              getData={getData}
+              handleChange={handleChange}
             />
           ))}
         </div>

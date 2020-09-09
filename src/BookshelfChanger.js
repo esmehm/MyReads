@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { update } from "./BooksAPI";
+import React from "react";
 
-const BookshelfChanger = ({ book, getData }) => {
-  const [value, setValue] = useState(book.shelf);
-
-  const handleChange = (e) => {
-    //TODO: make sure this updates correctly everytime and refreshes - maybe look into controlled and uncontrolled components
-    update(book, e.target.value).then(setValue(e.target.value)).then(getData());
+const BookshelfChanger = ({ book, handleChange }) => {
+  const handleThatChange = (event) => {
+    handleChange(event, book);
   };
 
   return (
     <div className="book-shelf-changer">
-      <select value={value} onChange={handleChange}>
+      <select value={book.shelf} onChange={handleThatChange}>
         <option value="move" disabled>
           Move to...
         </option>
