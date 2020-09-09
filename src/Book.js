@@ -1,7 +1,7 @@
 import React from "react";
 import BookshelfChanger from "./BookshelfChanger";
 
-const Book = ({ bookCoverUrl, bookCoverHeight, bookTitle, bookAuthor }) => {
+const Book = ({ bookCoverUrl, bookTitle, bookAuthor }) => {
   return (
     <div className="book">
       <div className="book-top">
@@ -9,8 +9,8 @@ const Book = ({ bookCoverUrl, bookCoverHeight, bookTitle, bookAuthor }) => {
           className="book-cover"
           style={{
             width: 128,
-            height: bookCoverHeight,
-            backgroundImage: bookCoverUrl,
+            height: "inherit",
+            backgroundImage: `url("${bookCoverUrl}")`,
           }}
         ></div>
         <BookshelfChanger />

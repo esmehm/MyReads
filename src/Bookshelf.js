@@ -1,10 +1,8 @@
 import React from "react";
 import Book from "./Book";
 
-const Bookshelf = ({ shelf, books }) => {
-  const booksOnShelf = books.filter((book) =>
-    shelf.books.includes(book.bookTitle)
-  );
+const Bookshelf = ({ shelf, books = [] }) => {
+  const booksOnShelf = books.filter((book) => book.shelf === shelf.key);
 
   return (
     <div className="bookshelf">
@@ -13,12 +11,11 @@ const Bookshelf = ({ shelf, books }) => {
         <ol className="books-grid">
           {booksOnShelf.map((book) => {
             return (
-              <li>
+              <li key={book.id}>
                 <Book
-                  bookCoverUrl={book.bookCoverUrl}
-                  bookCoverHeight={book.bookCoverHeight}
-                  bookTitle={book.bookTitle}
-                  bookAuthor={book.bookAuthor}
+                  bookCoverUrl={book.imageLinks.thumbnail}
+                  bookTitle={book.title}
+                  bookAuthor={book.authors[0]}
                 />
               </li>
             );
