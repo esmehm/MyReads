@@ -21,6 +21,8 @@ const ListPage = () => {
 
   const [books, setBooks] = useState();
 
+  // TODO: add loading indicator
+
   const getData = async () => {
     const fetchedBooks = await getAll();
     setBooks(fetchedBooks);
@@ -36,7 +38,12 @@ const ListPage = () => {
       <div className="list-books-content">
         <div>
           {shelves.map((shelf) => (
-            <Bookshelf shelf={shelf} books={books} key={shelf.key} />
+            <Bookshelf
+              shelf={shelf}
+              books={books}
+              key={shelf.key}
+              getData={getData}
+            />
           ))}
         </div>
       </div>

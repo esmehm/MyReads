@@ -1,7 +1,11 @@
 import React from "react";
 import BookshelfChanger from "./BookshelfChanger";
 
-const Book = ({ bookCoverUrl, bookTitle, bookAuthor }) => {
+const Book = ({ book, getData }) => {
+  const bookCoverUrl = book.imageLinks.thumbnail;
+  const bookTitle = book.title;
+  const bookAuthor = book.authors[0];
+
   return (
     <div className="book">
       <div className="book-top">
@@ -13,7 +17,7 @@ const Book = ({ bookCoverUrl, bookTitle, bookAuthor }) => {
             backgroundImage: `url("${bookCoverUrl}")`,
           }}
         ></div>
-        <BookshelfChanger />
+        <BookshelfChanger book={book} getData={getData} />
       </div>
       <div className="book-title">{bookTitle}</div>
       <div className="book-authors">{bookAuthor}</div>

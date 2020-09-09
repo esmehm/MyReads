@@ -1,8 +1,10 @@
 import React from "react";
 import Book from "./Book";
 
-const Bookshelf = ({ shelf, books = [] }) => {
+const Bookshelf = ({ shelf, books = [], getData }) => {
   const booksOnShelf = books.filter((book) => book.shelf === shelf.key);
+
+  //TODO: add comment about empty shelf
 
   return (
     <div className="bookshelf">
@@ -12,11 +14,7 @@ const Bookshelf = ({ shelf, books = [] }) => {
           {booksOnShelf.map((book) => {
             return (
               <li key={book.id}>
-                <Book
-                  bookCoverUrl={book.imageLinks.thumbnail}
-                  bookTitle={book.title}
-                  bookAuthor={book.authors[0]}
-                />
+                <Book book={book} getData={getData} />
               </li>
             );
           })}
