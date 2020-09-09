@@ -24,12 +24,13 @@ const ListPage = () => {
   };
 
   const [books, setBooks] = useState();
-
-  // TODO: add loading indicator
+  const [loading, setLoading] = useState(false);
 
   const getData = async () => {
+    setLoading(true);
     const fetchedBooks = await getAll();
     setBooks(fetchedBooks);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -39,18 +40,23 @@ const ListPage = () => {
   return (
     <div className="list-books">
       <AppTitle />
-      <div className="list-books-content">
-        <div>
-          {shelves.map((shelf) => (
-            <Bookshelf
-              shelf={shelf}
-              books={books}
-              key={shelf.key}
-              handleChange={handleChange}
-            />
-          ))}
+      {loading ? (
+        <div>Loading... </div>
+      ) : (
+        <div className="list-books-content">
+          <div>
+            {shelves.map((shelf) => (
+              <Bookshelf
+                shelf={shelf}
+                books={books}
+                key={shelf.key}
+                handleChange={handleChange}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
+
       <div className="open-search">
         <button onClick={() => this.setState({ showSearchPage: true })}>
           Add a book
