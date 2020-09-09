@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AppTitle from "./AppTitle";
 import Bookshelf from "./Bookshelf";
 import { getAll, update } from "./BooksAPI";
+import { Link } from "react-router-dom";
 
 const ListPage = () => {
   const shelves = [
@@ -58,9 +59,9 @@ const ListPage = () => {
       )}
 
       <div className="open-search">
-        <button onClick={() => this.setState({ showSearchPage: true })}>
+        <Link className="open-search-link" to="/search">
           Add a book
-        </button>
+        </Link>
       </div>
     </div>
   );
