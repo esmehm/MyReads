@@ -2,10 +2,6 @@ import React from "react";
 import BookshelfChanger from "./BookshelfChanger";
 
 const Book = ({ book, handleChange }) => {
-  const bookCoverUrl = book.imageLinks.thumbnail;
-  const bookTitle = book.title;
-  const bookAuthor = book.authors[0];
-
   return (
     <div className="book">
       <div className="book-top">
@@ -14,13 +10,19 @@ const Book = ({ book, handleChange }) => {
           style={{
             width: 128,
             height: "inherit",
-            backgroundImage: `url("${bookCoverUrl}")`,
+            backgroundImage: `url("${book.imageLinks.thumbnail}")`,
           }}
         ></div>
         <BookshelfChanger book={book} handleChange={handleChange} />
       </div>
-      <div className="book-title">{bookTitle}</div>
-      <div className="book-authors">{bookAuthor}</div>
+      <div className="book-title">{book.title}</div>
+      <div className="book-authors">
+        <ul>
+          {book.authors.map((author) => (
+            <li key={author}>{author}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
