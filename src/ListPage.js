@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AppTitle from "./AppTitle";
 import Bookshelf from "./Bookshelf";
-import { getAll, update } from "./BooksAPI";
 import { Link } from "react-router-dom";
 
-const ListPage = () => {
+const ListPage = ({ loading, books, handleShelfChangeInsideList }) => {
   const shelves = [
     {
       title: "Currently Reading",
@@ -20,24 +19,6 @@ const ListPage = () => {
     },
   ];
 
-  const handleChange = (event, book) => {
-    update(book, event.target.value).then(getData);
-  };
-
-  const [books, setBooks] = useState();
-  const [loading, setLoading] = useState(false);
-
-  const getData = async () => {
-    setLoading(true);
-    const fetchedBooks = await getAll();
-    setBooks(fetchedBooks);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <div className="list-books">
       <AppTitle />
@@ -51,7 +32,7 @@ const ListPage = () => {
                 shelf={shelf}
                 books={books}
                 key={shelf.key}
-                handleChange={handleChange}
+                handleChange={handleShelfChangeInsideList}
               />
             ))}
           </div>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { search, update } from "./BooksAPI";
+import { search } from "./BooksAPI";
 import Book from "./Book";
 
-const SearchPage = () => {
+const SearchPage = ({ handleShelfChange, books }) => {
   const handleSearchChange = (event) => {
     getSearchResults(event.target.value);
   };
@@ -17,14 +17,17 @@ const SearchPage = () => {
   };
 
   const doSearch = async (searchTerm) => {
-    // setLoading(true);
-    const fetchedBooks = await search(searchTerm);
-    setSearchResults(fetchedBooks);
-    // setLoading(false);
-  };
-
-  const handleShelfChange = (event, book) => {
-    update(book, event.target.value);
+    const booksWithSearchTerm = await search(searchTerm);
+    const combined = booksWithSearchTerm.length
+      ? booksWithSearchTerm.map((bookWithSearchTerm) => {
+          const shelvedItem = books.find(
+            (bookOnShelf) => bookOnShelf.id === bookWithSearchTerm.id
+          );
+          bookWithSearchTerm.shelf = shelvedItem ? shelvedItem.shelf : null;
+          return bookWithSearchTerm;
+        })
+      : [];
+    setSearchResults(combined);
   };
 
   return (
