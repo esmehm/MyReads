@@ -53,19 +53,19 @@ const SearchPage = ({ handleShelfChange, books }) => {
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid">
-          {/* TODO: remove zero for when no results */}
-          {/* TODO: what should it say for no results */}
-          {searchResults.length &&
-            searchResults.map((book) => {
+        {searchResults.length ? (
+          <ol className="books-grid">
+            {searchResults.map((book) => {
               return (
                 <li key={book.id}>
-                  {/* TODO: tidy up naming here */}
                   <Book book={book} handleChange={handleShelfChange} />
                 </li>
               );
             })}
-        </ol>
+          </ol>
+        ) : (
+          <div>No books to display. Please refine your search.</div>
+        )}
       </div>
     </div>
   );

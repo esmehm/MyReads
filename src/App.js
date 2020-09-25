@@ -16,12 +16,10 @@ const BooksApp = () => {
   };
 
   const handleShelfChange = (event, affectedBook) => {
-    const newBooks = books.map((oldBook) => {
-      const newBookItem = books.find((book) => book.id === oldBook.id);
-      if (newBookItem.id === affectedBook.id)
-        newBookItem.shelf = event.target.value;
-      return newBookItem;
-    });
+    const copiedBooks = [...books];
+    const newBooks = copiedBooks.map((book) =>
+      book.id === affectedBook.id ? affectedBook : book
+    );
     setBooks(newBooks);
 
     BooksAPI.update(affectedBook, event.target.value);

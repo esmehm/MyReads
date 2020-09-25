@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 const BookshelfChanger = ({ book, handleChange }) => {
+  const [bookInQuestion, setBookInQuestion] = useState(book);
+
   const handleThatChange = (event) => {
-    handleChange(event, book);
+    const affectedBook = { ...bookInQuestion };
+    affectedBook.shelf = event.target.value;
+    setBookInQuestion(affectedBook);
+    handleChange(event, affectedBook);
   };
 
   return (
     <div className="book-shelf-changer">
-      <select value={book.shelf || "none"} onChange={handleThatChange}>
+      <select
+        value={bookInQuestion.shelf || "none"}
+        onChange={handleThatChange}
+      >
         <option value="move" disabled>
           Move to...
         </option>
