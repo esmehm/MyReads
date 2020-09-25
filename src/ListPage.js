@@ -3,7 +3,7 @@ import AppTitle from "./AppTitle";
 import Bookshelf from "./Bookshelf";
 import { Link } from "react-router-dom";
 
-const ListPage = ({ loading, books, handleShelfChangeInsideList }) => {
+const ListPage = ({ loading, books, handleShelfChange }) => {
   const shelves = [
     {
       title: "Currently Reading",
@@ -32,7 +32,7 @@ const ListPage = ({ loading, books, handleShelfChangeInsideList }) => {
                 shelf={shelf}
                 books={books}
                 key={shelf.key}
-                handleChange={handleShelfChangeInsideList}
+                handleChange={handleShelfChange}
               />
             ))}
           </div>

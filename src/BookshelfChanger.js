@@ -4,7 +4,7 @@ const BookshelfChanger = ({ book, handleChange }) => {
   const handleThatChange = (event) => {
     handleChange(event, book);
   };
-  //TODO: make which shelf a book is on persist between search screen and list screen
+
   return (
     <div className="book-shelf-changer">
       <select value={book.shelf || "none"} onChange={handleThatChange}>
