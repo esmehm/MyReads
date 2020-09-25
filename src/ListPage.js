@@ -32,7 +32,7 @@ const ListPage = ({ loading, books, handleShelfChange }) => {
                 shelf={shelf}
                 books={books}
                 key={shelf.key}
-                handleChange={handleShelfChange}
+                handleShelfChange={handleShelfChange}
               />
             ))}
           </div>

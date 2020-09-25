@@ -58,7 +58,7 @@ const SearchPage = ({ handleShelfChange, books }) => {
             {searchResults.map((book) => {
               return (
                 <li key={book.id}>
-                  <Book book={book} handleChange={handleShelfChange} />
+                  <Book book={book} handleShelfChange={handleShelfChange} />
                 </li>
               );
             })}

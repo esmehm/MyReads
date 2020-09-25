@@ -1,7 +1,7 @@
 import React from "react";
 import BookshelfChanger from "./BookshelfChanger";
 
-const Book = ({ book, handleChange }) => {
+const Book = ({ book, handleShelfChange }) => {
   const backgroundImage = book.imageLinks
     ? `url("${book.imageLinks.thumbnail}")`
     : "";
@@ -17,7 +17,7 @@ const Book = ({ book, handleChange }) => {
             backgroundImage: backgroundImage,
           }}
         ></div>
-        <BookshelfChanger book={book} handleChange={handleChange} />
+        <BookshelfChanger book={book} handleShelfChange={handleShelfChange} />
       </div>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">
