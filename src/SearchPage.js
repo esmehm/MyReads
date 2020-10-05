@@ -10,8 +10,6 @@ const SearchPage = ({ handleShelfChange, books }) => {
 
   const [searchResults, setSearchResults] = useState([]);
 
-  //TODO: use loading indicator
-  // const [loading, setLoading] = useState(false)
   const getSearchResults = async (searchTerm) => {
     searchTerm ? doSearch(searchTerm) : setSearchResults([]);
   };

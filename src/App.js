@@ -6,6 +6,9 @@ import ListPage from "./ListPage";
 import "./App.css";
 
 const BooksApp = () => {
+  useEffect(() => {
+    getData();
+  }, []);
   const [books, setBooks] = useState();
   const [loading, setLoading] = useState(false);
   const getData = async () => {
@@ -20,14 +23,13 @@ const BooksApp = () => {
     const newBooks = copiedBooks.map((book) =>
       book.id === affectedBook.id ? affectedBook : book
     );
+    const bookIds = newBooks.map((book)=> book.id)
+    if (!bookIds.includes(affectedBook.id)) newBooks.push(affectedBook);
     setBooks(newBooks);
-
     BooksAPI.update(affectedBook, event.target.value);
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  
 
   return (
     <div className="app">
