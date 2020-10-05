@@ -23,13 +23,11 @@ const BooksApp = () => {
     const newBooks = copiedBooks.map((book) =>
       book.id === affectedBook.id ? affectedBook : book
     );
-    const bookIds = newBooks.map((book)=> book.id)
+    const bookIds = newBooks.map((book) => book.id);
     if (!bookIds.includes(affectedBook.id)) newBooks.push(affectedBook);
     setBooks(newBooks);
     BooksAPI.update(affectedBook, event.target.value);
   };
-
-  
 
   return (
     <div className="app">
